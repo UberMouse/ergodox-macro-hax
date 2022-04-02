@@ -14,7 +14,7 @@ const macroExtensions = {
         .withShift(newMacro().typeAlphanumeric("5"))
         .delay(100)
         .typeAlphanumeric("r")
-        .delay(300)
+        .delay(600)
         .withShift(newMacro().typeAlphanumeric("2"))
 }
 
