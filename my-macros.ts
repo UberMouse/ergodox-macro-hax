@@ -1,7 +1,7 @@
 import { newMacro, processAll } from "./macros";
 
 // Point this at wherever your config root folder is
-const SOURCE_DIR = "./moonlander_test-layout_source/keymap.c";
+const SOURCE_DIR = "./layout_src/moonlander_test-layout_source/keymap.c";
 
 const macroExtensions = {
     "bd": newMacro()
