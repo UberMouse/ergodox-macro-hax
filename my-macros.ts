@@ -15,6 +15,12 @@ const macroExtensions = {
         .delay(100)
         .typeAlphanumeric("r")
         .delay(600)
+        .withShift(newMacro().typeAlphanumeric("2")),
+    "pf": newMacro()
+        .withShift(newMacro().typeAlphanumeric("5"))
+        .delay(100)
+       .withShift(newMacro() .typeAlphanumeric("d"))
+        .delay(600)
         .withShift(newMacro().typeAlphanumeric("2"))
 }
 
