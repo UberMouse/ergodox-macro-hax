@@ -13,6 +13,8 @@ export interface MacroBuilder {
     withModifiers: (innerMacro: MacroBuilder, rawModifiers: string[]) => MacroBuilder,
 
     withShift: (innerMacro: MacroBuilder) => MacroBuilder,
+
+     withCtrl: (innerMacro: MacroBuilder) => MacroBuilder,
     
     withWin: (innerMacro: MacroBuilder) => MacroBuilder,
 
@@ -116,6 +118,9 @@ export const newMacro: (expectedReplacementCount?: number) => MacroBuilder = (er
         withShift: (innerMacro: MacroBuilder) => {
             return self.withModifiers(innerMacro, ["SS_LSFT"])
         },          
+        withCtrl: (innerMacro: MacroBuilder) => {
+            return self.withModifiers(innerMacro, ["SS_LCTL"])
+        },   
         withWin: (innerMacro: MacroBuilder) => {
             return self.withModifiers(innerMacro, ["SS_LWIN"])
         },      

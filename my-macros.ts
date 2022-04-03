@@ -21,7 +21,15 @@ const macroExtensions = {
         .delay(100)
        .withShift(newMacro() .typeAlphanumeric("d"))
         .delay(600)
-        .withShift(newMacro().typeAlphanumeric("2"))
+        .withShift(newMacro().typeAlphanumeric("2")),
+    "res": newMacro()
+        .withShift(newMacro().typeAlphanumeric("6"))
+        .delay(100)
+       .withCtrl(newMacro() .typeAlphanumeric("r")),
+    "ref": newMacro()
+        .withShift(newMacro().typeAlphanumeric("6"))
+        .delay(100)
+       .withCtrl(newMacro() .typeAlphanumeric("d")),
 }
 
 processAll(macroExtensions, SOURCE_DIR)
