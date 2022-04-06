@@ -29,10 +29,11 @@ jobs:
           artifacts_path: ${{ github.workspace }}/artifacts
           keymap: firmware
           keyboard: moonlander
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          files: artifacts/moonlander_firmware.bin
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          title: "Updated firmware"
+          files: |
+            artifacts/moonlander_firmware.bin
         
