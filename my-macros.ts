@@ -51,7 +51,13 @@ const macroExtensions = {
              .delay(100)
              .typeAlphanumeric("p")
              .delay(600)
-             .withShift(newMacro().typeAlphanumeric("8"))
+             .withShift(newMacro().typeAlphanumeric("8")),
+    "veng": newMacro()
+        .withShift(newMacro().typeAlphanumeric("y"))
+        .withShift(newMacro().typeAlphanumeric("l")),
+    "dis": newMacro()
+        .withShift(newMacro().typeAlphanumeric("y"))
+        .withShift(newMacro().typeAlphanumeric("m"))
 
 }
 
