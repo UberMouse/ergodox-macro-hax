@@ -19,13 +19,9 @@ const macroExtensions = {
     "pf": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .delay(60)
-        .withShift(newMacro().typeAlphanumeric("7"))
-        .delay(100)
        .withShift(newMacro() .typeAlphanumeric("d"))
         .delay(600)
-        .withShift(newMacro().typeAlphanumeric("2"))
-         .delay(60)
-        .withShift(newMacro().typeAlphanumeric("8")),
+        .withShift(newMacro().typeAlphanumeric("2")),
     "res": newMacro()
         .withShift(newMacro().typeAlphanumeric("6"))
         .delay(100)
@@ -46,12 +42,6 @@ const macroExtensions = {
         .withCtrl(newMacro().typeAlphanumeric("7"))
         .delay(68)
         .withCtrl(newMacro().typeAlphanumeric("8")),
-     "eof": newMacro()
-             .withShift(newMacro().typeAlphanumeric("7"))
-             .delay(100)
-             .typeAlphanumeric("p")
-             .delay(600)
-             .withShift(newMacro().typeAlphanumeric("8")),
     "veng": newMacro()
         .withShift(newMacro().typeAlphanumeric("y"))
         .withShift(newMacro().typeAlphanumeric("l")),
