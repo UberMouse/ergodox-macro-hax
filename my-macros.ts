@@ -30,18 +30,9 @@ const macroExtensions = {
         .withShift(newMacro().typeAlphanumeric("6"))
         .delay(100)
        .withCtrl(newMacro() .typeAlphanumeric("d")),
-    "rcpo": newMacro()
-        .withCtrl(newMacro().typeAlphanumeric("3"))
-        .delay(60)
-        .withCtrl(newMacro().typeAlphanumeric("4"))
-        .delay(48)
-         .withCtrl(newMacro().typeAlphanumeric("5"))
-        .delay(57)
-         .withCtrl(newMacro().typeAlphanumeric("6"))
-        .delay(53)
-        .withCtrl(newMacro().typeAlphanumeric("7"))
-        .delay(68)
-        .withCtrl(newMacro().typeAlphanumeric("8")),
+    // target cycle
+    "lred": newMacro()
+        .withCtrl(newMacro().typeAlphanumeric("b")),
     "veng": newMacro()
         .withShift(newMacro().typeAlphanumeric("y"))
         .withShift(newMacro().typeAlphanumeric("l")),
