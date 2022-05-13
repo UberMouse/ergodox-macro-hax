@@ -39,20 +39,16 @@ const macroExtensions = {
     "dis": newMacro()
         .withShift(newMacro().typeAlphanumeric("y"))
         .withShift(newMacro().typeAlphanumeric("m")),
-    // barricade
-    "ctrl+z": newMacro()
+    "bar": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("z")),
-    // preparation
-    "ctrl+x": newMacro()
+    "prep": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("x")),
-    // revenge
-    "ctrl+c": newMacro()
+    "rev": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("c")),
-    // immortality
-    "ctrl+v": newMacro()
+    "imort": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("v")),
 
