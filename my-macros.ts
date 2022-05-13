@@ -41,19 +41,19 @@ const macroExtensions = {
         .withShift(newMacro().typeAlphanumeric("m")),
     // barricade
     "ctrl+z": newMacro()
-        .widthShift(newMacro().typeAlphanumeric("5"))
+        .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("z")),
     // preparation
     "ctrl+x": newMacro()
-        .widthShift(newMacro().typeAlphanumeric("5"))
+        .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("x")),
     // revenge
     "ctrl+c": newMacro()
-        .widthShift(newMacro().typeAlphanumeric("5"))
+        .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("c")),
     // immortality
     "ctrl+v": newMacro()
-        .widthShift(newMacro().typeAlphanumeric("5"))
+        .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("v")),
 
 }
