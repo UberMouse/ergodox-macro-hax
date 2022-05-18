@@ -20,6 +20,8 @@ const macroExtensions = {
         .withShift(newMacro().typeAlphanumeric("5"))
         .delay(60)
        .withShift(newMacro() .typeAlphanumeric("d"))
+       .delay(60)
+       .typeAlphanumeric("z")
         .delay(600)
         .withShift(newMacro().typeAlphanumeric("2")),
     "res": newMacro()
@@ -51,6 +53,9 @@ const macroExtensions = {
     "imort": newMacro()
         .withShift(newMacro().typeAlphanumeric("5"))
         .withCtrl(newMacro().typeAlphanumeric("v")),
+    "ent": newMacro()
+        .withShift(newMacro().typeAlphanumeric("y"))
+        .withCtrl(newMacro().typeAlphanumeric("4"))
 
 }
 
