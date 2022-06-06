@@ -124,6 +124,15 @@ export const newMacro: (expectedReplacementCount?: number) => MacroBuilder = (er
         withWin: (innerMacro: MacroBuilder) => {
             return self.withModifiers(innerMacro, ["SS_LWIN"])
         },      
+        withAlt: (innerMacro: MacroBuilder) => {
+            return self.withModifiers(innerMacro, ["SS_LALT"])
+        },
+        altTab: () => {
+            return self.withAlt(self.tapKey("X_TAB"))
+        },
+        click: () => {
+            return self.tapKey("X_MS_BTN1")
+        },
         build: () => {
             const cmds = commands.map((cmd) => cmd())
             // Trim delays off the ends of commands

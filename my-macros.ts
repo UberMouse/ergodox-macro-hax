@@ -55,7 +55,12 @@ const macroExtensions = {
         .withCtrl(newMacro().typeAlphanumeric("v")),
     "ent": newMacro()
         .withShift(newMacro().typeAlphanumeric("y"))
-        .withCtrl(newMacro().typeAlphanumeric("4"))
+        .withCtrl(newMacro().typeAlphanumeric("4")),
+    "rs": newMacro()
+        .altTab()
+        .click()
+        .altTab()
+        .tapKey("X_ESC")
 
 }
 
