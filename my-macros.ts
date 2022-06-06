@@ -58,11 +58,11 @@ const macroExtensions = {
         .withCtrl(newMacro().typeAlphanumeric("4")),
     "rs": newMacro()
         .altTab()
-        .delay(100)
+        .delay(600)
         .click()
-        .delay(100)
+        .delay(200)
         .altTab()
-        .delay(100)
+        .delay(600)
         .tapKey("X_ESC")
 
 }
