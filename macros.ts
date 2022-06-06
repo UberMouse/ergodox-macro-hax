@@ -17,6 +17,9 @@ export interface MacroBuilder {
      withCtrl: (innerMacro: MacroBuilder) => MacroBuilder,
     
     withWin: (innerMacro: MacroBuilder) => MacroBuilder,
+        withAlt: (innerMacro: MacroBuilder) => MacroBuilder,
+        altTab: () => MacroBuilder,
+        click: () => MacroBuilder,
 
     build: () => string,
 
