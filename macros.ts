@@ -131,7 +131,7 @@ export const newMacro: (expectedReplacementCount?: number) => MacroBuilder = (er
             return self.withModifiers(innerMacro, ["SS_LALT"])
         },
         altTab: () => {
-            return self.withAlt(newMacro().delay(750).tapKey("X_TAB"))
+            return self.withAlt(newMacro().tapKey("X_TAB").delay(750))
         },
         click: () => {
             return self.tapKey("X_MS_BTN1")
