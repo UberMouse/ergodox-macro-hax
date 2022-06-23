@@ -195,6 +195,7 @@ const macroExtensions = {
     "rune": teleportMacro(mainPassage(), ["3", "7"]),
     "barb": teleportMacro(mainPassage(), ["4", "2"]),
     "range": teleportMacro(mainPassage(), ["6", "4"]),
+    "holy": teleportMacro(mainPassage(), ["6", "3"]),
     "ban": teleportMacro(secondaryPassage(), ["4", "3"]),
     "lumb": teleportMacro(secondaryPassage(), ["3", "1"]),
     "light": teleportMacro(globeGloves(), ["5"]),
