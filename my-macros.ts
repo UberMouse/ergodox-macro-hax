@@ -31,6 +31,13 @@ function skipGcd(): DelayCommand {
     };
 }
 
+function delay(ms: number): DelayCommand {
+    return {
+        type: "delay",
+        ms
+    };
+}
+
 function type(input: string, modifier?: "shift" | "ctrl"): InputCommand {
     return {
         type: "input",
@@ -129,7 +136,7 @@ function davesBook(): InputCommand {
 
 function teleportMacro(openCommand: InputCommand, keys: string[]): MacroBuilder {
     return executeMacro([
-        [openCommand],
+        [openCommand, delay(100)],
         ...keys.map(key => [type(key)]),
     ])
 }
