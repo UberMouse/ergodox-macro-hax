@@ -1,61 +1,197 @@
-import { newMacro, processAll } from "./macros";
+
+import { MacroBuilder, newMacro, processAll } from "./macros";
 
 // Point this at wherever your config root folder is
 const SOURCE_DIR = "./layout_src/moonlander_test-layout_source/keymap.c";
 
+type DelayCommand = {
+    type: "delay";
+    ms: number;
+};
+type Input = {
+    input: string;
+    modifier?: "shift" | "ctrl";
+}
+type InputCommand = {type: "input"} & Input;
+type Command = InputCommand | DelayCommand;
+type Tick = Command[];
+type RsMacro = Tick[];
+
+function skipTick(): DelayCommand {
+    return {
+        type: "delay",
+        ms: 600
+    };
+}
+
+function skipGcd(): DelayCommand {
+    return {
+        type: "delay",
+        ms: 600 * 3
+    };
+}
+
+function type(input: string, modifier?: "shift" | "ctrl"): InputCommand {
+    return {
+        type: "input",
+            input,
+            modifier
+    };
+}
+
+function inputToBuilder(input: Input): MacroBuilder {
+    return newMacro().typeAlphanumeric(input.input);
+}
+
+function inputCommand(macro: MacroBuilder, input: InputCommand): MacroBuilder {
+    return macro.withModifier(inputToBuilder(input), input.modifier);
+}
+
+function delayCommand(macro: MacroBuilder, delay: DelayCommand): MacroBuilder {
+    return macro.delay(delay.ms);
+}
+
+function executeMacro(macro: RsMacro): MacroBuilder {
+    return macro.reduce((macro, tick) => {
+        const m = tick.reduce((macro, command) => {
+        if (command.type === "input") {
+            return inputCommand(macro, command);
+        }
+        else if (command.type === "delay") {
+            return delayCommand(macro, command);
+        }
+        }, macro);
+        return m.delay(600);
+    }, newMacro());
+}
+
+function bd(): InputCommand {
+    return {
+        type: "input",
+        input: "34"
+    };
+}
+
+function dw(): InputCommand {
+    return {
+        type: "input",
+        input: "12"
+    };
+}
+
+function lunars(): InputCommand {
+    return {
+        type: "input",
+        input: "y",
+        modifier: "shift"
+    };
+}
+
+function defender(): InputCommand {
+    return {    
+        type: "input",
+        input: "5",
+        modifier: "shift"
+    };
+}
+
+function mainPassage(): InputCommand {
+    return {
+        type: "input",
+        input: "n",
+        modifier: "shift"
+    };
+}
+
+function secondaryPassage(): InputCommand {
+    return {
+        type: "input",
+        input: "q",
+        modifier: "shift"
+    };
+}
+
+function globeGloves(): InputCommand {
+    return {
+        type: "input",
+        input: "z",
+        modifier: "shift"
+    };
+}
+
+function davesBook(): InputCommand {
+    return {
+        type: "input",
+        input: "-",
+        modifier: "shift"
+    };
+}
+
+function teleportMacro(openCommand: InputCommand, keys: string[]): MacroBuilder {
+    return executeMacro([
+        [openCommand],
+        ...keys.map(key => [type(key)]),
+    ])
+}
+
 const macroExtensions = {
-    "bd": newMacro()
-        .withShift(newMacro().typeAlphanumeric("3"))
-        .withShift(newMacro().typeAlphanumeric("4")),
-    "dw": newMacro()
-        .withShift(newMacro().typeAlphanumeric("1"))
-        .withShift(newMacro().typeAlphanumeric("2")),
-    "carom": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .delay(100)
-        .typeAlphanumeric("r")
-        .delay(600)
-        .withShift(newMacro().typeAlphanumeric("2")),
-    "pf": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .delay(60)
-       .withShift(newMacro() .typeAlphanumeric("d"))
-       .delay(60)
-       .typeAlphanumeric("z")
-        .delay(600)
-        .withShift(newMacro().typeAlphanumeric("2")),
-    "res": newMacro()
-        .withShift(newMacro().typeAlphanumeric("6"))
-        .delay(100)
-       .withCtrl(newMacro() .typeAlphanumeric("r")),
-    "ref": newMacro()
-        .withShift(newMacro().typeAlphanumeric("6"))
-        .delay(100)
-       .withCtrl(newMacro() .typeAlphanumeric("d")),
+    "bd": executeMacro([[bd()]]),
+    "dw": executeMacro([[dw()]]),
+    "carom": executeMacro([
+        [defender(), type("r")],
+        [type("2", "shift")],
+    ]),
+    "pf": executeMacro([
+        [defender(), type("d", "shift"), type("z")],
+        [type("2", "shift")],
+    ]),
+    "res": executeMacro([
+        [type("6", "shift"), type("r", "ctrl")],
+    ]),
+    "ref": executeMacro([
+        [type("6", "shift"), type("d", "ctrl")],
+    ]),
     // target cycle
-    "lred": newMacro()
-        .withCtrl(newMacro().typeAlphanumeric("b")),
-    "veng": newMacro()
-        .withShift(newMacro().typeAlphanumeric("y"))
-        .withShift(newMacro().typeAlphanumeric("l")),
-    "dis": newMacro()
-        .withShift(newMacro().typeAlphanumeric("y"))
-        .withShift(newMacro().typeAlphanumeric("m")),
-    "bar": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .withCtrl(newMacro().typeAlphanumeric("z")),
-    "prep": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .withCtrl(newMacro().typeAlphanumeric("x")),
-    "rev": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .withCtrl(newMacro().typeAlphanumeric("c")),
-    "imort": newMacro()
-        .withShift(newMacro().typeAlphanumeric("5"))
-        .withCtrl(newMacro().typeAlphanumeric("v")),
-    "ent": newMacro()
-        .withShift(newMacro().typeAlphanumeric("y"))
-        .withCtrl(newMacro().typeAlphanumeric("4")),
+    "lred": executeMacro([
+        [type("b", "ctrl")],
+    ]),
+    "veng": executeMacro([
+        [lunars(), type("l", "shift")],
+    ]),
+    "dis": executeMacro([
+        [lunars(), type("m", "shift")],
+    ]),
+    "bar": executeMacro([
+       [defender(), type("z", "ctrl")],
+    ]),
+    "prep": executeMacro([
+       [defender(), type("x", "ctrl")],
+    ]),
+    "rev": executeMacro([
+       [defender(), type("c", "ctrl")],
+    ]),
+    "imort": executeMacro([
+       [defender(), type("v", "ctrl")],
+    ]),
+    "ent": executeMacro([
+        [lunars(), type("4", "ctrl")],
+    ]),
+    "ard": teleportMacro(davesBook(), ["4"]),
+    "watch": teleportMacro(davesBook(), ["1"]),
+    "came": teleportMacro(davesBook(), ["2"]),
+    "fish": teleportMacro(mainPassage(), ["3", "1"]),
+    "frem": teleportMacro(mainPassage(), ["1", "3"]),
+    "kara": teleportMacro(mainPassage(), ["2", "2"]),
+    "warf": teleportMacro(mainPassage(), ["5", "3"]),
+    "hets": teleportMacro(mainPassage(), ["5", "1"]),
+    "dray": teleportMacro(mainPassage(), ["2", "3"]),
+    "rune": teleportMacro(mainPassage(), ["3", "7"]),
+    "barb": teleportMacro(mainPassage(), ["4", "2"]),
+    "range": teleportMacro(mainPassage(), ["6", "4"]),
+    "ban": teleportMacro(secondaryPassage(), ["4", "3"]),
+    "lumb": teleportMacro(secondaryPassage(), ["3", "1"]),
+    "light": teleportMacro(globeGloves(), ["5"]),
+    "yard": teleportMacro(globeGloves(), ["6"]),
     "rs": newMacro()
         .altTab()
         .delay(600)

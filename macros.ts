@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 
 export interface MacroBuilder {
+    withModifier(innerMacro: MacroBuilder, modifier?: "ctrl" | "shift"): MacroBuilder;
     delay: (milliseconds: number) => MacroBuilder,
 
     sendRawCmd: (rawCmd: string) => MacroBuilder,
@@ -129,6 +130,18 @@ export const newMacro: (expectedReplacementCount?: number) => MacroBuilder = (er
         },      
         withAlt: (innerMacro: MacroBuilder) => {
             return self.withModifiers(innerMacro, ["SS_LALT"])
+        },
+        withModifier: (innerMacro: MacroBuilder, modifier?: "ctrl" | "shift") => {
+             if (modifier === "ctrl") {
+                return self.withCtrl(innerMacro)
+            }
+            else if (modifier === "shift") {
+                return self.withShift(innerMacro)
+            }
+            else {
+                commands.push(() => innerMacro.build());
+               return self;
+            }
         },
         altTab: () => {
             return self.withAlt(newMacro().tapKey("X_TAB"))
