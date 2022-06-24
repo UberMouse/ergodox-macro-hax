@@ -202,6 +202,7 @@ const macroExtensions = {
     "exam": teleportMacro(secondaryPassage(), ["1", "3"]),
     "light": teleportMacro(globeGloves(), ["5"]),
     "yard": teleportMacro(globeGloves(), ["6"]),
+    "zoo": teleportMacro(globeGloves(), ["3"]),
     "rs": newMacro()
         .altTab()
         .delay(600)
