@@ -68,7 +68,7 @@ function executeMacro(macro: RsMacro): MacroBuilder {
             return delayCommand(macro, command);
         }
         }, macro);
-        return m.delay(600);
+        return m.delay(900);
     }, newMacro());
 }
 
@@ -136,7 +136,7 @@ function davesBook(): InputCommand {
 
 function teleportMacro(openCommand: InputCommand, keys: string[]): MacroBuilder {
     return executeMacro([
-        [openCommand, delay(100)],
+        [openCommand],
         ...keys.map(key => [type(key)]),
     ])
 }
