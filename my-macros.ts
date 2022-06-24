@@ -196,6 +196,7 @@ const macroExtensions = {
     "barb": teleportMacro(mainPassage(), ["4", "2"]),
     "range": teleportMacro(mainPassage(), ["6", "4"]),
     "holy": teleportMacro(mainPassage(), ["6", "3"]),
+    "burgh": teleportMacro(mainPassage(), ["4", "6"]),
     "ban": teleportMacro(secondaryPassage(), ["4", "3"]),
     "lumb": teleportMacro(secondaryPassage(), ["3", "1"]),
     "exam": teleportMacro(secondaryPassage(), ["1", "3"]),
