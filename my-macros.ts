@@ -75,14 +75,16 @@ function executeMacro(macro: RsMacro): MacroBuilder {
 function bd(): InputCommand {
     return {
         type: "input",
-        input: "34"
+        input: "34",
+        "modifier": "shift"
     };
 }
 
 function dw(): InputCommand {
     return {
         type: "input",
-        input: "12"
+        input: "12",
+        "modifier": "shift"
     };
 }
 
