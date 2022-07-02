@@ -147,7 +147,7 @@ const macroExtensions = {
     "bd": executeMacro([[bd()]]),
     "dw": executeMacro([[dw()]]),
     "carom": executeMacro([
-        [defender(), type("r")],
+        [defender(), delay(200), type("r")],
         [type("2", "shift")],
     ]),
     "pf": executeMacro([
