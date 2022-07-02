@@ -151,7 +151,7 @@ const macroExtensions = {
         [type("2", "shift")],
     ]),
     "pf": executeMacro([
-        [defender(), type("d", "shift"), type("z")],
+        [defender(), type("d", "shift")],
         [type("2", "shift")],
     ]),
     "res": executeMacro([
