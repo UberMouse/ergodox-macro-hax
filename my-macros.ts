@@ -58,8 +58,8 @@ function delayCommand(macro: MacroBuilder, delay: DelayCommand): MacroBuilder {
     return macro.delay(delay.ms);
 }
 
-function executeMacro(macro: RsMacro): MacroBuilder {
-    return macro.reduce((macro, tick) => {
+function executeMacro(macroSource: RsMacro): MacroBuilder {
+    return macroSource.reduce((macro, tick) => {
         const m = tick.reduce((macro, command) => {
             if (command.type === "input") {
                 return inputCommand(macro, command);
@@ -69,10 +69,10 @@ function executeMacro(macro: RsMacro): MacroBuilder {
             }
         }, macro);
 
-        if (macro.length === 1) {
+        if (macroSource.length === 1) {
             return m;
         }
-        
+
         return m.delay(900);
     }, newMacro());
 }
