@@ -141,6 +141,14 @@ function davesBook(): InputCommand {
     };
 }
 
+function caroming(): InputCommand {
+    return {
+        type: "input",
+        input: "6",
+        modifier: "shift"
+    };
+}
+
 function teleportMacro(openCommand: InputCommand, keys: string[]): MacroBuilder {
     return executeMacro([
         [openCommand],
@@ -152,7 +160,7 @@ const macroExtensions = {
     "bd": executeMacro([[bd()]]),
     "dw": executeMacro([[dw()]]),
     "carom": executeMacro([
-        [defender(), delay(200), type("r")],
+        [caroming(), delay(200), type("r")],
         [type("2", "shift")],
     ]),
     "pf": executeMacro([
