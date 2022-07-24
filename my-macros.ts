@@ -144,7 +144,7 @@ function davesBook(): InputCommand {
 function caroming(): InputCommand {
     return {
         type: "input",
-        input: "6",
+        input: "5",
         modifier: "shift"
     };
 }
