@@ -224,9 +224,6 @@ const macroExtensions = {
         .click()
         .delay(200)
         .altTab()
-        .delay(600)
-        .tapKey("X_ESC")
-
 }
 
 processAll(macroExtensions, SOURCE_DIR)
