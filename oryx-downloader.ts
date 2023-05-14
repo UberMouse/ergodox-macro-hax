@@ -4,25 +4,25 @@ import unzipper from 'unzipper'
 
 const ORYX_GRAPHQL_URL = 'https://oryx.zsa.io/graphql'
 
-export async function getKeymapSourceLink(hashId, revisionId = 'latest') {
-  const query = `
+export async function getKeymapSourceLink(hashId, revisionId = "latest") {
+    const query = `
 query getLayout($hashId: String!, $revisionId: String!, $geometry: String) {
-  Layout(hashId: $hashId, geometry: $geometry, revisionId: $revisionId) {
+  layout(hashId: $hashId, geometry: $geometry, revisionId: $revisionId) {
     revision {
       zipUrl
     }
   }
-}`
-  const { data } = await axios.post(ORYX_GRAPHQL_URL, {
-    operationName: 'getLayout',
-    variables: {
-        hashId,
-        geometry: 'moonlander',
-        revisionId,
-    },
-    query,
-  })
-  return data.data.Layout.revision.zipUrl
+}`;
+    const { data } = await axios.post(ORYX_GRAPHQL_URL, {
+        operationName: "getLayout",
+        variables: {
+            hashId,
+            geometry: "moonlander",
+            revisionId,
+        },
+        query,
+    });
+    return data.data.layout.revision.zipUrl;
 }
 
 export async function unzipKeymapSource(url, path) {
