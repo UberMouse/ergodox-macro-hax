@@ -198,6 +198,18 @@ const macroExtensions = {
     "ent": executeMacro([
         [lunars(), type("4", "ctrl")],
     ]),
+    "rcpo": newMacro()
+        .withShift(newMacro().typeAlphanumeric("d"))
+        .delay(60)
+        .withShift(newMacro().typeAlphanumeric("g"))
+        .delay(48)
+         .withShift(newMacro().typeAlphanumeric("p"))
+        .delay(57)
+         .withShift(newMacro().typeAlphanumeric("t"))
+        .delay(53)
+        .withShift(newMacro().typeAlphanumeric("s"))
+        .delay(68)
+        .withShift(newMacro().typeAlphanumeric("r")),
     "ard": teleportMacro(davesBook(), ["4"]),
     "watch": teleportMacro(davesBook(), ["1"]),
     "came": teleportMacro(davesBook(), ["2"]),
