@@ -203,7 +203,7 @@ const macroExtensions = {
         .delay(60)
         .withShift(newMacro().typeAlphanumeric("g"))
         .delay(48)
-         .withShift(newMacro().typeAlphanumeric("p"))
+         .withCtrl(newMacro().typeAlphanumeric("p"))
         .delay(57)
          .withShift(newMacro().typeAlphanumeric("t"))
         .delay(53)
