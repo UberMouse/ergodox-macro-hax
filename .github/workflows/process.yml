@@ -38,5 +38,5 @@ jobs:
           automatic_release_tag: "latest"
           title: "Updated firmware"
           files: |
-            artifacts/moonlander_firmware.bin
+            artifacts/zsa_moonlander_firmware.bin
         
