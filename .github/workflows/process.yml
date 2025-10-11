@@ -31,6 +31,8 @@ jobs:
           artifacts_path: ${{ github.workspace }}/artifacts
           keymap: firmware
           keyboard: moonlander
+      - name: Rename firmware file
+        run: mv artifacts/zsa_moonlander_firmware.bin artifacts/moonlander_firmware.bin
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
