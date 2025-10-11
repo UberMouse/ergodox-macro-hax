@@ -29,7 +29,7 @@ jobs:
         with:
           path: layout_src/${{ vars.LAYOUT_FOLDER }}
           artifacts_path: ${{ github.workspace }}/artifacts
-          keymap: oryx
+          keymap: firmware
           keyboard: zsa/moonlander
           branch: firmware25
       - name: Rename firmware file
