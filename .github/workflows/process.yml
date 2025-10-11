@@ -32,8 +32,6 @@ jobs:
           keymap: firmware
           keyboard: zsa/moonlander
           branch: firmware25
-      - name: Fix firmware filename
-        run: cp artifacts/zsa_moonlander_firmware.bin artifacts/moonlander_firmware.bin
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
