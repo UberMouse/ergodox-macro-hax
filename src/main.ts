@@ -19,7 +19,9 @@ export default async function main(
     const macroMap = userConfig.prepare(newMacro).macroExtensions;
 
     const loaded = readFileSync(keymapSource).toString();
-    const newConfig = expandMacros(loaded.replaceAll(")SS_DELAY", ") SS_DELAY"), macroMap);
+    const loadedWithv25Fix = loaded.replaceAll(")SS_DELAY", ") SS_DELAY");
+    console.log(loadedWithv25Fix)
+    const newConfig = expandMacros(loadedWithv25Fix, macroMap);
 
     const backup = keymapSource + Math.random() + ".old.c";
     writeFileSync(backup, loaded);
