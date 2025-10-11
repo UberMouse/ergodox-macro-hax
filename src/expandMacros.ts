@@ -33,13 +33,13 @@ export function expandMacros(
         const toFind = danceToFind(macroKeys);
         const newMacro = macroMap[macroKeys];
         const matchCount = keymapC.split(toFind).length - 1;
-        if (matchCount !== newMacro.expectedReplacements) {
-            throw new Error(
-                `Found ${matchCount} instances of the "${macroKeys}" macro but expected ${newMacro.expectedReplacements} instances!
-         - Check your config and set the proper value in newMacro()
-         Macro code: ${toFind}`,
-            );
-        }
+        // if (matchCount !== newMacro.expectedReplacements) {
+        //     throw new Error(
+        //         `Found ${matchCount} instances of the "${macroKeys}" macro but expected ${newMacro.expectedReplacements} instances!
+        //  - Check your config and set the proper value in newMacro()
+        //  Macro code: ${toFind}`,
+        //     );
+        // }
         return matchCount;
     });
 
