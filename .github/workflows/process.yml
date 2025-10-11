@@ -30,7 +30,7 @@ jobs:
           path: layout_src/${{ vars.LAYOUT_FOLDER }}
           artifacts_path: ${{ github.workspace }}/artifacts
           keymap: default
-          keyboard: moonlander
+          keyboard: zsa/moonlander
           branch: firmware25
       - name: Rename firmware file
         run: mv artifacts/zsa_moonlander_firmware.bin artifacts/moonlander_firmware.bin
