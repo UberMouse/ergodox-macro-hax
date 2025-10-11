@@ -21,7 +21,7 @@ export default async function main(
     const loaded = readFileSync(keymapSource).toString();
     const loadedWithv25Fix = loaded
         .replaceAll(")SS_DELAY", ") SS_DELAY")
-        .replaceAll(/\)\s\s/g, ") ");
+        .replaceAll(/\)  /g, ") ");
     console.log(loadedWithv25Fix)
     const newConfig = expandMacros(loadedWithv25Fix, macroMap);
 
