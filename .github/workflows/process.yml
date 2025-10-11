@@ -29,7 +29,7 @@ jobs:
         with:
           path: layout_src/${{ vars.LAYOUT_FOLDER }}
           artifacts_path: ${{ github.workspace }}/artifacts
-          keymap: firmware
+          keymap: default
           keyboard: moonlander
           branch: firmware25
       - name: Rename firmware file
