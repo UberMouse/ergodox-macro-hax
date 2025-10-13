@@ -61,7 +61,8 @@ export function prepare(newMacro) {
         return macroSource.reduce((macro, tick) => {
             const m = tick.reduce((macro, command) => {
                 if (command.type === "input") {
-                    return inputCommand(macro, command);
+                    // delay 100ms after every input to ensure input order
+                    return inputCommand(macro, command).delay(100);
                 }
                 else if (command.type === "delay") {
                     return delayCommand(macro, command);
