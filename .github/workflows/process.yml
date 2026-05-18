@@ -12,31 +12,55 @@ jobs:
       LAYOUT_ID: ${{ vars.LAYOUT_ID }}
       LAYOUT_FOLDER: ${{ vars.LAYOUT_FOLDER }}
       USER_NAME: ${{ github.repository_owner }}
+      QMK_BRANCH: firmware25
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20.x
       - name: Install
         run: npm install
       - name: Get ORYX layout
         run: npm run get
       - name: Process macros
         run: npm start
-      - name: Compile QMK Firmware from source
-        uses: Phoscur/QMK-compile@main
-        with:
-          path: layout_src/${{ vars.LAYOUT_FOLDER }}
-          artifacts_path: ${{ github.workspace }}/artifacts
-          keymap: firmware
-          keyboard: zsa/moonlander
-          branch: firmware25
+      - name: Compile QMK Firmware from source (Moonlander Mark I revA)
+        run: |
+          set -e
+          mkdir -p "${GITHUB_WORKSPACE}/artifacts"
+          docker run --rm \
+            -e LAYOUT_FOLDER="${LAYOUT_FOLDER}" \
+            -e QMK_BRANCH="${QMK_BRANCH}" \
+            -e HOST_UID="$(id -u)" \
+            -e HOST_GID="$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/github/workspace" \
+            qmkfm/qmk_cli \
+            bash -ec '
+              echo "Setting up ZSA QMK fork (${QMK_BRANCH}) ..."
+              qmk setup zsa/qmk_firmware -b "${QMK_BRANCH}" -y
+
+              KEYMAP_DIR=/qmk_firmware/keyboards/zsa/moonlander/keymaps/firmware
+              echo "Copying ORYX source into ${KEYMAP_DIR} ..."
+              mkdir -p "${KEYMAP_DIR}"
+              cp /github/workspace/layout_src/"${LAYOUT_FOLDER}"/* "${KEYMAP_DIR}/"
+              ls "${KEYMAP_DIR}"
+
+              cd /qmk_firmware
+              echo "Compiling zsa/moonlander/reva ..."
+              qmk compile -kb zsa/moonlander/reva -km firmware
+
+              echo "Build outputs:"
+              ls /qmk_firmware/.build/*.bin
+              cp /qmk_firmware/.build/zsa_moonlander_reva_firmware.bin /github/workspace/artifacts/moonlander_firmware.bin
+              chown -R "${HOST_UID}:${HOST_GID}" /github/workspace/artifacts
+            '
+          echo "Artifacts:"
+          ls -l "${GITHUB_WORKSPACE}/artifacts"
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           title: "Updated firmware"
           files: |
-            artifacts/zsa_moonlander_firmware.bin
-        
+            artifacts/moonlander_firmware.bin
