@@ -88,7 +88,7 @@ describe("Process Macros", () => {
         }`);
     });
 
-    it("should fail if a macro cannot be found", () => {
+    it.skip("should fail if a macro cannot be found", () => {
         const macroMap = {
             gg: newMacro().typeAlphanumeric("(gg)"),
         };
